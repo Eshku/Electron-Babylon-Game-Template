@@ -1,0 +1,90 @@
+#player_interface {
+	--player_interface_background: rgba(0, 0, 0, 0.5);
+	--player_interface_border: 1px solid rgba(255, 255, 255, 0.2);
+
+	--player_interface_text_color: white;
+	--player_interface_font_size: 14px;
+	--player_interface_line_height: 18px;
+
+	--player_interface_padding: 10px;
+	--player_interface_margin: 10px;
+
+	--player_interface_top_offset: 200px;
+	--player_interface_right_offset: 10px;
+
+	--player_health_bar_background: rgba(0, 0, 0, 0.3);
+	--player_health_bar_fill: rgb(0, 255, 0);
+	--player_mana_bar_background: rgba(0, 0, 0, 0.3);
+	--player_mana_bar_fill: rgb(0, 0, 255);
+	--player_stamina_bar_background: rgba(0, 0, 0, 0.3);
+	--player_stamina_bar_fill: rgb(255, 255, 0);
+	--player_xp_bar_background: rgba(0, 0, 0, 0.3);
+	--player_xp_bar_fill: rgb(255, 165, 0);
+}
+
+#player_interface {
+	position: absolute;
+
+	display: none;
+	flex-flow: column;
+	place-items: flex-start;
+	place-content: flex-start;
+
+	gap: 10px;
+
+	top: var(--player_interface_top_offset);
+	right: var(--player_interface_right_offset);
+
+	background: var(--player_interface_background);
+	border: var(--player_interface_border);
+	border-radius: 5px;
+	padding: var(--player_interface_padding);
+
+	font-family: 'Merriweather Sans', sans-serif;
+	color: var(--player_interface_text_color);
+	font-size: var(--player_interface_font_size);
+	line-height: var(--player_interface_line_height);
+
+	/* avoid using transition there, causes drag lag*/
+}
+
+#player_interface * {
+	user-select: none;
+}
+
+
+#player_interface.active {
+	display: flex;
+}
+
+#player_interface .top_row {
+	display: flex;
+	flex-flow: row nowrap;
+	place-items: center;
+	place-content: flex-start;
+
+	gap: 10px;
+}
+
+#player_interface .character {
+	display: grid;
+	grid-template-columns: 1fr 1fr; /* Gear and Inventory side-by-side */
+	grid-template-rows: auto 1fr; /* Inventory takes up remaining space */
+	grid-column-gap: 10px; /* Gap between columns */
+	grid-row-gap: 10px; /* Gap between rows */
+}
+
+#player_interface .character > .gear_wrap {
+	grid-column: 1; /* Occupies the first column */
+	grid-row: 1; /* Occupies the first row */
+}
+
+#player_interface .character > .inventory_wrap {
+	grid-column: 1; /* Occupies the first column */
+	grid-row: 2; /* Occupies the second row (takes up remaining space) */
+}
+
+#player_interface .character > .stats_wrap {
+	grid-column: 2; /* Occupies the second column */
+	grid-row: 1 / span 2; /* Spans both rows */
+}

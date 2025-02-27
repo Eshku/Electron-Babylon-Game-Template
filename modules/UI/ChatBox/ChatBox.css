@@ -1,0 +1,167 @@
+/* TODO increase font of input too with chat controls */
+
+#game_chatbox {
+  --chatbox-offset: 10px; /* Control left-side offset */
+  --chatbox-background: rgba(0, 0, 0, 0.25); /* Control chatbox background color */
+  --chatbox-border-color: rgba(255, 255, 255, 0.35); /* Control border color */
+  --chatbox-text-color: #f3f3f3; /* Control text color */
+  --chatbox-focus-background: rgba(0, 0, 0, 0.35); /* Control background color on focus */
+  --chatbox-focus-shadow: 0 0 0 1px rgba(69, 243, 176, 0.171); /* Control box shadow on focus */
+
+  --chatbox-font-size: 13px; /* Default font size */
+  --chatbox-line-height: 17px; /* Default line height */
+
+  --chat-controls-size: 20px;
+  --chat-controls-padding: 10px;
+}
+
+#game_chatbox {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  place-items: flex-start;
+  place-content: flex-start;
+
+  /* 1px off for shadows */
+  bottom: 1px;
+  right: 1px;
+  height: 200px;
+  width: 400px;
+  background: var(--chatbox-background);
+  border-radius: 5px 0 0 0;
+
+  transition: 0.15s ease-in-out;
+
+  font-family: 'Merriweather Sans', sans-serif;
+
+  cursor: default;
+}
+
+#game_chatbox ::selection {
+  background-color: #ffffcc;
+  color: #333;
+}
+
+#game_chatbox .chat_messages {
+  height: 100%;
+  width: calc(100% - var(--chat-controls-size) - var(--chat-controls-padding) - 2px); /* controls border */
+  padding: 10px;
+  margin-bottom: 5px;
+  gap: 5px;
+  display: flex;
+  flex-flow: column;
+  place-items: flex-start;
+  place-content: flex-start;
+
+  overflow-y: auto;
+}
+
+#game_chatbox .chat_messages .message {
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-all;
+
+  font-size: var(--chatbox-font-size);
+  line-height: var(--chatbox-line-height);
+
+  transition: 0.3s;
+}
+
+#game_chatbox .chat_messages .message .message_content {
+  color: #b0b0b0;
+}
+
+#game_chatbox .chat_messages .message.system_message .message_content {
+  font-style: italic;
+  color: #9e9e9e;
+  font-weight: 900;
+}
+
+#game_chatbox .chat_messages .message .nickname {
+  font-weight: 600;
+  color: #2196f3;
+  white-space: nowrap;
+  margin-right: 5px;
+}
+
+#game_chatbox .chat_messages .message.system_message .nickname {
+  font-weight: 900;
+  color: #ff5722;
+}
+
+#game_chatbox .chat_messages .message.admin_message .nickname {
+  color: #e91e63;
+}
+
+#game_chatbox .chat_input {
+  border: none;
+  outline: unset;
+  margin: unset;
+  padding: unset;
+  text-indent: var(--chatbox-offset);
+  width: 100%;
+  height: 20px;
+  background: transparent;
+
+  color: var(--chatbox-text-color);
+  /* border-bottom: 1px solid var(--chatbox-border-color); */
+  transition: 0.3s ease-in-out;
+}
+
+#game_chatbox:focus-within {
+  background: var(--chatbox-focus-background);
+  box-shadow: var(--chatbox-focus-shadow);
+}
+
+#game_chatbox:focus-within .chat_input {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#game_chatbox .chat_messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+#game_chatbox .chat_messages::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#game_chatbox .chat_messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+#game_chatbox .chat_messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#game_chatbox .chat_controls {
+  display: flex;
+  flex-flow: column;
+  place-items: center;
+  place-content: flex-start;
+  gap: 5px;
+
+  position: absolute;
+  right: var(--chat-controls-padding);
+  top: var(--chat-controls-padding);
+  height: 100%;
+  width: 20px;
+}
+
+#game_chatbox .chat_controls .font_control {
+  display: flex;
+  flex-flow: column;
+  place-items: center;
+  place-content: center;
+
+  height: var(--chat-controls-size);
+  width: var(--chat-controls-size);
+
+  background-color: transparent;
+  border: 1px solid var(--chatbox-border-color);
+  border-radius: 5px;
+  color: var(--chatbox-text-color);
+  cursor: pointer;
+  user-select: none;
+}

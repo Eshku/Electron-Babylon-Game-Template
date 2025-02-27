@@ -1,0 +1,85 @@
+#player_status_panel {
+  --frame_size: 90px;
+}
+
+#player_status_panel * {
+  user-select: none;
+}
+
+#player_status_panel img {
+  -webkit-user-drag: none;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#player_status_panel {
+  position: absolute;
+  display: flex;
+  flex-flow: row nowrap;
+  place-items: flex-start;
+  place-content: flex-start;
+
+  gap: 25px;
+
+  top: 20px;
+
+  left: 20px;
+
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#player_status_panel .player_frame {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  place-content: center;
+
+  height: var(--frame_size);
+  width: var(--frame_size);
+}
+
+#player_status_panel .player_frame img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 25px;
+}
+
+#player_status_panel .status_bar {
+  display: flex;
+  flex-flow: column;
+  place-items: flex-start;
+  place-content: flex-start;
+  gap: 10px;
+}
+
+#player_status_panel .status_bar .health_bar {
+  width: 400px;
+  height: 20px;
+  box-shadow: 0 0 0 1px #607d8b;
+  border-radius: 10px;
+}
+
+#player_status_panel .status_bar .health_bar_fill {
+  height: 100%;
+  background: linear-gradient(to right, #b71c1c 0%, #ffeb3b 50%, #43a048 100%);
+  min-width: 0%;
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+#player_status_panel .status_bar .status_effects {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#player_status_panel .status_bar .status_effects .status_effect {
+  background-color: rgba(255, 255, 0, 0.7);
+  padding: 3px 8px;
+  border-radius: 15px;
+  font-size: 12px;
+}

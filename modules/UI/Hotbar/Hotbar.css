@@ -1,0 +1,225 @@
+#skill_panel {
+	--skill_panel_background: transparent;
+	--skill_slot_background: rgba(0, 0, 0, 0.2);
+	--skill_slot_border_shadow: inset 0 0 0 1px #8787873f;
+
+	--active_skill_slot_background: rgba(255, 255, 255, 0.2);
+
+	--skill_description_background: rgba(0, 0, 0, 0.5);
+
+	--skill_slot_size: 64px;
+	--skill_slot_gap: 5px;
+}
+
+#skill_panel {
+	position: absolute;
+	border-radius: 5px;
+
+	width: auto;
+	height: calc(var(--skill_slot_size));
+
+	left: 200px;
+	bottom: 1px;
+
+	background: var(--skill_panel_background);
+
+	font-family: 'Merriweather Sans', sans-serif;
+}
+
+#skill_panel * {
+	user-select: none;
+}
+
+#skill_panel .skill_slots {
+	display: flex;
+	flex-flow: row nowrap;
+	place-items: center;
+	place-content: flex-start;
+
+	height: 100%;
+	width: 100%;
+	gap: 10px;
+}
+
+#skill_panel .skill_slots .skill_slot {
+	position: relative;
+
+	display: flex;
+	flex-flow: column;
+	place-items: center;
+	place-content: center;
+	flex-shrink: 0;
+
+	width: var(--skill_slot_size);
+	height: var(--skill_slot_size);
+	border-radius: 5px;
+
+	background: var(--skill_slot_background);
+	/* box-shadow: var(--skill_slot_border_shadow); */
+
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+#skill_panel .skill_slots .skill_slot img {
+	-webkit-user-drag: none;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#skill_panel .skill_slots .skill_slot.active {
+	background: var(--active_skill_slot_background);
+}
+
+#skill_panel .skill_slots .skill_slot .description {
+	position: absolute;
+
+	display: none;
+
+	flex-flow: column;
+	place-items: center;
+	place-content: flex-start;
+
+	width: max-content;
+	max-width: 300px;
+	padding: 20px;
+
+	color: #fff;
+	font-size: 12px;
+	line-height: 16px;
+
+	background: var(--skill_description_background);
+	box-shadow: 0 0 0 1px #8787873f;
+	border-radius: 5px;
+
+	z-index: 100;
+}
+
+#skill_panel .skill_slots .skill_slot:hover .description {
+	display: flex;
+	top: auto;
+	bottom: calc(var(--skill_slot_size) + 10px);
+
+	/* Check if description overflows below the viewport */
+	transform: translateX(-50%) translateY(calc(100vh - var(--skill-slot-size) - 10px - 100% - 10px));
+}
+
+#skill_panel .skill_slots .skill_slot .description .img_box {
+	display: flex;
+	flex-flow: column;
+	place-items: center;
+	place-content: center;
+	padding: 5px;
+	margin-top: 10px;
+	margin-bottom: 25px;
+	border-radius: 5px;
+}
+
+#skill_panel .skill_slots .skill_slot .description .img_box.common {
+	box-shadow: 5px 5px 10px #e0e6eb, -5px -5px 10px #f8fafc;
+}
+
+#skill_panel .skill_slots .skill_slot .description .img_box.rare {
+	box-shadow: 5px 5px 12px #64b5f6, -5px -5px 12px #b3e5fc;
+}
+
+#skill_panel .skill_slots .skill_slot .description .img_box.epic {
+	box-shadow: 5px 5px 12px #aa69c8, -5px -5px 12px #e3d2f0;
+}
+
+#skill_panel .skill_slots .skill_slot .description .img_box.legendary {
+	box-shadow: 5px 5px 12px #e6c31f, -5px -5px 12px #fffacd;
+}
+
+#skill_panel .skill_slots .skill_slot .description .img_box img {
+	max-width: 100%;
+	max-height: 100%;
+	border-radius: 5px;
+}
+
+#skill_panel .skill_slots .skill_slot .description .txt_box {
+	display: flex;
+	flex-flow: column;
+	place-items: center;
+	place-content: flex-start;
+	gap: 15px;
+}
+
+#skill_panel .skill_slots .skill_slot .description .txt_box .header {
+	display: block;
+	width: 100%;
+	margin-bottom: 5px;
+
+	font-size: 13px;
+	line-height: 15px;
+	text-align: center;
+	font-style: italic;
+}
+
+#skill_panel .skill_slots .skill_slot .description .txt_box .skill_stats {
+	gap: 2.5px;
+	display: flex;
+	flex-flow: column;
+	place-items: stretch;
+	place-content: space-between;
+}
+
+#skill_panel .skill_slots .skill_slot .description .txt_box .skill_stats .header:not(:first-of-type) {
+	margin-top: 10px;
+}
+
+#skill_panel .skill_slots .skill_slot .description .txt_box .item {
+	display: flex;
+	flex-flow: row nowrap;
+	place-items: center;
+	place-content: space-between;
+	gap: 25px;
+}
+
+#skill_panel .skill_slots .skill_slot .description .txt_box .item .label,
+#skill_panel .skill_slots .skill_slot .description .txt_box .item .value {
+	white-space: nowrap;
+}
+
+#skill_panel .skill_slots .skill_slot .description .txt_box .item .label {
+	font-weight: bold;
+	color: #a0a0a0;
+}
+
+#skill_panel .skill_slots .skill_slot .description .txt_box .item .value {
+	color: #f0f0f0;
+}
+
+#skill_panel .skill_slots .skill_slot .description .txt_box .item .value .unit {
+	font-size: 10px;
+}
+
+#skill_panel .skill_slots .skill_slot .keybinding {
+	display: flex;
+	flex-flow: column;
+	place-items: center;
+	place-content: center;
+
+	position: absolute;
+	left: 2.5px;
+	bottom: 2.5px;
+
+	font-size: 12px;
+	line-height: 16px;
+
+	color: #fff;
+}
+
+#skill_panel .skill_slots .skill_slot .cooldown-timer {
+	position: absolute; /* Position within the skill slot */
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); /* Center the timer */
+	font-size: 14px;
+	color: white;
+	display: none; /* Initially hidden */
+}
+
+#skill_panel .skill_slots .skill_slot.on-cooldown .cooldown-timer {
+	display: block; /* Show the timer when on cooldown */
+}

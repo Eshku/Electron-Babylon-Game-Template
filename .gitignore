@@ -1,0 +1,17 @@
+#node
+/node_modules
+
+#build
+/exe
+
+#asset sources
+/assets/icons/skills/source
+
+#dev doc
+/assets/library/.snapshot
+/Reference
+
+
+#weird stuffs
+TODO
+/ignore
